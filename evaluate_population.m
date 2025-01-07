@@ -1,10 +1,9 @@
-function fitness = evaluate_population(population, t, a, c, V, node_constraints, b)
+function fitness = evaluate_population(population, t, a, c, V, node_constraints)
     % Inputs:
     % - population: Matrix of solutions
     % - t, a, c: Problem parameters
     % - V: Total incoming vehicle rate
     % - node_constraints: Node flow conservation constraints
-    % - b: array with the coefficients of each Ti in the fitness function
     % Output:
     % - fitness: Vector of fitness values for the population
 
@@ -19,7 +18,7 @@ function fitness = evaluate_population(population, t, a, c, V, node_constraints,
         % Compute traversal time
         for j = 1:length(x)
             if x(j) >= 0 && x(j) <= c(j)
-                fitness(i) = fitness(i) + b(j) * (t(j) + a(j) * (x(j) / (1 - x(j)/c(j))));
+                fitness(i) = fitness(i) + t(j) + a(j) * (x(j) / (1 - x(j)/c(j)));
             else
                 penalty = penalty + 1e6 * max(0, x(j) - c(j)); % Penalty for capacity violations
             end

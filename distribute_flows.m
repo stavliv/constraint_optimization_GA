@@ -6,7 +6,8 @@ function proportions = distribute_flows(node_constraints, inflow_sum, c, mode, c
     % - inflow_sum: Total inflow to the node
     % - c: Capacity vector for all edges
     % - mode: 'ground_up', 'perturbation', or 'correct'
-    % - current_values: Proportions (for "Proportion") or flows (for "Flow")
+    % - current_values: current proportions, needed in 'perturbation', and
+    %   'correct' mode.
     % Output:
     % - proportions: Proportion of inflow assigned to each outgoing edge
 
@@ -51,7 +52,7 @@ function proportions = distribute_flows(node_constraints, inflow_sum, c, mode, c
     % Calculate room
     if inflow_sum > 0
         max_capacity_proportion = edge_capacities / inflow_sum;
-        room = proportions - max_capacity_proportion;
+        room = max_capacity_proportion - proportions;
         
         % Identify positive and negative room
         positive_indices = find(room > 0);

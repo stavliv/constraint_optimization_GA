@@ -17,14 +17,14 @@ problem_params.c = [54.13, 21.56, 34.08, 49.19, 33.03, 21.84, 29.96, 24.87, 47.2
 % is 18, and b shows the number of paths each edge participates in, so devided 
 % by 18 we get the weight for each edge.
 %
-% Our desire is to scale T(i) by b(i) in the fitness function
+% Our desire is to scale T(i) by b(i) in the fitness function.
 % Because every t(i) is part of the constant term in the fitness function,
 % scaling a(i) by b(i) is essentially the same as scaling T(i) for our
 % optimization problem.
 %
 % In case we want to weight each edge for the number of times it appears in
-% possible paths from node the entry node to the exit node, uncomment the
-% 2 dollowing lines.
+% possible paths from the entry node to the exit node, uncomment the
+% 2 following lines.
 % b = [3, 6, 4, 5, 1, 2, 2, 4, 4, 1, 3, 3, 6, 5, 5, 6, 4] / 18;
 % problem_params.a = problem_params.a .* b;
 
